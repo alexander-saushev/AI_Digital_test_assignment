@@ -29,7 +29,7 @@ This will:
 - Launch the Dash web interface.
 
 After startup, open your browser at:  
-👉 [http://localhost:8050](http://localhost:8050)
+[http://localhost:8050](http://localhost:8050)
 
 ---
 
