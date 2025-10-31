@@ -16,10 +16,14 @@ Once all containers are running, you can open the dashboard in your browser.
 
 ### How to Run the Project
 
-In the project root directory (`root`), run the following command:
+In the project root directory, run the following command:
 
 ```bash
 docker-compose up --build -d
+```
+or 
+```bash
+docker compose up --build -d
 ```
 
 This will:
@@ -39,6 +43,10 @@ To stop and remove all containers, volumes, and networks created by Docker Compo
 
 ```bash
 docker-compose down -v
+```
+or
+```bash
+docker compose down -v
 ```
 
 ---
