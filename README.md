@@ -1,4 +1,4 @@
-# Test Assignment for AI.Digital
+# Test Assignment for AI Digital
 
 This repository contains a Dockerized application consisting of three containers:  
 **ETL**, **Dashboard**, and **PostgreSQL database**.
