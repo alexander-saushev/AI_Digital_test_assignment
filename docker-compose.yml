@@ -1,0 +1,51 @@
+services:
+  db:
+    image: postgres:15
+    container_name: db
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+    networks:
+      - test_network
+
+  etl:
+    build:
+      context: ./etl_app
+      dockerfile: Dockerfile
+    container_name: etl
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - test_network
+
+  dashboard:
+    build:
+      context: ./dashboard_app
+      dockerfile: Dockerfile
+    container_name: dashboard
+    env_file: .env
+    ports:
+      - "8050:8050"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - test_network
+
+volumes:
+  pgdata:
+
+networks:
+  test_network:
+    driver: bridge
